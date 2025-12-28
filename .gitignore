@@ -1,0 +1,53 @@
+# =============== #
+# Unity специфичное
+# =============== #
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Uu]ser[Ss]ettings/
+
+# Visual Studio cache directory
+.vs/
+
+# Автогенерируемые файлы
+ExportedObj/
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.tmp
+*.user
+*.userprefs
+*.pidb
+*.booproj
+
+# ОС
+*.pidb.meta
+Thumbs.db
+
+# Unity3D сгенерированные файлы
+*.cubemap
+*.assets
+
+# =============== #
+# Visual Studio
+# =============== #
+## Игнорировать все файлы .vs
+.vs/
+## Файлы блокировки (Visual Studio использует их)
+*.vsidx
+*.vsix
+
+# =============== #
+# OS generated
+# =============== #
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+[Tt]humbs.db

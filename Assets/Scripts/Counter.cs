@@ -1,50 +1,27 @@
+using System;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.InputSystem;
 
 public class Counter : MonoBehaviour
 {
-    private Text counterText;
-    private int count = 0;
-    private bool isRunning = false;
-    private Coroutine countingCoroutine;
+    public event Action<int> OnCountChanged;
 
-    void Start()
+    [SerializeField] private float _countInterval = 0.5f;
+
+    private int _count;
+    private bool _isRunning;
+    private Coroutine _countingCoroutine;
+    private WaitForSeconds _waitInterval;
+
+    private void Awake()
     {
-        counterText = GetComponent<Text>();
-        if (counterText == null)
-        {
-            counterText = GetComponentInChildren<Text>();
-        }
-        if (counterText == null)
-        {
-            counterText = FindObjectOfType<Text>();
-        }
-
-        if (counterText != null)
-        {
-            Debug.Log("Text найден: " + counterText.name);
-            counterText.text = count.ToString();
-        }
-        else
-        {
-            Debug.LogError("Text не найден!");
-        }
+        _waitInterval = new WaitForSeconds(_countInterval);
     }
 
-    void Update()
+    public void ToggleCounting()
     {
-        if (Mouse.current.leftButton.wasPressedThisFrame)
-        {
-            ToggleCounter();
-        }
-    }
+        _isRunning = !_isRunning;
 
-    void ToggleCounter()
-    {
-        isRunning = !isRunning;
-
-        if (isRunning)
+        if (_isRunning)
         {
             StartCounting();
         }
@@ -54,44 +31,36 @@ public class Counter : MonoBehaviour
         }
     }
 
-    void StartCounting()
+    private void StartCounting()
     {
-        if (countingCoroutine != null)
+        if (_countingCoroutine != null)
         {
-            StopCoroutine(countingCoroutine);
+            StopCoroutine(_countingCoroutine);
         }
-        countingCoroutine = StartCoroutine(CountingRoutine());
+
+        _countingCoroutine = StartCoroutine(CountingRoutine());
     }
 
-    void StopCounting()
+    private void StopCounting()
     {
-        if (countingCoroutine != null)
+        if (_countingCoroutine != null)
         {
-            StopCoroutine(countingCoroutine);
-            countingCoroutine = null;
+            StopCoroutine(_countingCoroutine);
+            _countingCoroutine = null;
         }
     }
 
-    System.Collections.IEnumerator CountingRoutine()
+    private System.Collections.IEnumerator CountingRoutine()
     {
-        while (isRunning)
+        while (_isRunning)
         {
-            yield return new WaitForSeconds(0.5f);
+            yield return _waitInterval;
 
-            if (isRunning)
+            if (_isRunning)
             {
-                count++;
-                UpdateDisplay();
+                _count++;
+                OnCountChanged?.Invoke(_count);
             }
         }
-    }
-
-    void UpdateDisplay()
-    {
-        if (counterText != null)
-        {
-            counterText.text = count.ToString();
-        }
-        Debug.Log("—четчик: " + count);
     }
 }

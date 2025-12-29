@@ -1,0 +1,57 @@
+{
+    "version": 1,
+    "name": "GameplayInput",
+    "maps": [
+        {
+            "name": "Gameplay",
+            "id": "285f85a8-63b6-4d69-b341-a1e8fad1492d",
+            "actions": [
+                {
+                    "name": "PrimaryAction",
+                    "type": "Button",
+                    "id": "00831d5f-0af9-47f5-90d3-b62c27e8fa4b",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Press(pressPoint=0.5)",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "2ef55478-4f48-44dc-8b4a-ae82906f9e86",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PrimaryAction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3211d718-f286-4f74-82ae-03fc323b870d",
+                    "path": "<Touchscreen>/primaryTouch/tap",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PrimaryAction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "048d1e10-b5d5-41dc-a999-302225a39456",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PrimaryAction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
